@@ -230,7 +230,6 @@ export const SITE_CONTENT: SiteContent = {
       'Whether you are advancing a lead candidate or building foundational research infrastructure, Nova Cell provides the platform, expertise, and partnership to move faster.',
     primaryCTA: {
       label: 'Schedule a Consultation',
-      href: ':#contact',
       variant: 'primary',
     },
     secondaryCTA: {

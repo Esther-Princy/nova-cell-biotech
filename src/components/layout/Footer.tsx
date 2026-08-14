@@ -1,6 +1,7 @@
-import type { ReactElement } from 'react'
+import type { MouseEvent, ReactElement } from 'react'
 import type { NavLink } from '../../types'
 import { SITE_CONTENT } from '../../constants/content'
+import { useSectionNavigation } from '../../hooks/useSectionNavigation'
 import { cn } from '../../utils/cn'
 import BrandLogo from './BrandLogo'
 
@@ -35,7 +36,14 @@ const SOCIAL_ICONS: Record<string, () => ReactElement> = {
 }
 
 function FooterLink({ link }: { link: NavLink }) {
+  const { navigateToHref } = useSectionNavigation()
   const isExternal = link.href.startsWith('http')
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (navigateToHref(link.href)) {
+      event.preventDefault()
+    }
+  }
 
   return (
     <a
@@ -45,6 +53,7 @@ function FooterLink({ link }: { link: NavLink }) {
         'hover:text-text-primary',
         'focus-visible:rounded-sm',
       )}
+      onClick={handleClick}
       {...(isExternal && {
         target: '_blank',
         rel: 'noopener noreferrer',

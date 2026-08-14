@@ -1,8 +1,9 @@
 import { m } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { scrollRevealProps, staggerContainer, staggerItem } from '../../animations'
 import { useMotionSafe } from '../../animations/useMotionSafe'
 import { SITE_CONTENT, SECTION_IDS } from '../../constants/content'
+import { useSectionNavigation } from '../../hooks/useSectionNavigation'
 import type { ResearchStep } from '../../types'
 import SectionShell from '../layout/SectionShell'
 import Badge from '../ui/Badge'
@@ -99,7 +100,14 @@ function StageControl({
 export default function Research() {
   const { research } = SITE_CONTENT
   const { variants, viewport } = useMotionSafe()
+  const { registerArrivalHandler } = useSectionNavigation()
   const [activeStageId, setActiveStageId] = useState(research.steps[0]?.id ?? '')
+
+  useEffect(() => {
+    return registerArrivalHandler(SECTION_IDS.research, () => {
+      setActiveStageId(research.steps[0]?.id ?? '')
+    })
+  }, [registerArrivalHandler, research.steps])
 
   return (
     <SectionShell

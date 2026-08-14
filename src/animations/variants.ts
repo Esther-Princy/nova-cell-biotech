@@ -273,6 +273,27 @@ export const buttonHover = {
   scale: 1.02,
 }
 
+/** Mobile menu slide — restrained editorial reveal */
+export const mobileNavPanel: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.28,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: 20,
+    transition: { duration: 0.2 },
+  },
+}
+
 /** Exit fade for mobile menu overlays */
 export const fadeOut: Variants = {
   visible: { opacity: 1 },

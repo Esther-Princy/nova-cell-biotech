@@ -233,6 +233,69 @@ body {
   }
 }
 
+/* ── Section Navigation Arrival ─────────────────────────────────── */
+
+.section-arrival {
+  position: relative;
+}
+
+.section-arrival::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 75% 55% at 50% 18%,
+      rgb(0 212 170 / 0.1),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 82% 62%,
+      rgb(123 97 255 / 0.07),
+      transparent 70%
+    );
+  border-top: 1px solid rgb(0 212 170 / 0.22);
+  border-bottom: 1px solid rgb(123 97 255 / 0.12);
+  animation: section-arrival-glow 1.2s var(--ease-out-expo) forwards;
+}
+
+.section-arrival > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-arrival :is(h1, h2, h3)[id$="-heading"] {
+  transition: color 0.45s var(--ease-out-expo), text-shadow 0.45s var(--ease-out-expo);
+  text-shadow: 0 0 36px rgb(0 212 170 / 0.18);
+}
+
+@keyframes section-arrival-glow {
+  0% {
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-arrival::before {
+    animation: none;
+    opacity: 0.65;
+  }
+
+  .section-arrival :is(h1, h2, h3)[id$="-heading"] {
+    text-shadow: none;
+  }
+}
+
 /* ── Skip Link ──────────────────────────────────────────────────── */
 
 .skip-link {

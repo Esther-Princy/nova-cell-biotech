@@ -1,5 +1,5 @@
 import { m } from 'framer-motion'
-import type { ReactNode } from 'react'
+import { forwardRef, type ReactNode, type Ref } from 'react'
 import { buttonHover, buttonTap } from '../../animations/variants'
 import { useMotionSafe } from '../../animations/useMotionSafe'
 import { cn } from '../../utils/cn'
@@ -57,19 +57,22 @@ function isExternalHref(href: string, external?: boolean): boolean {
   return external ?? (href.startsWith('http') || href.startsWith('mailto:'))
 }
 
-export default function Button({
-  variant = 'primary',
-  size = 'md',
-  className,
-  children,
-  href,
-  external,
-  disabled = false,
-  onClick,
-  type = 'button',
-  'aria-label': ariaLabel,
-  id,
-}: ButtonProps) {
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(function Button(
+  {
+    variant = 'primary',
+    size = 'md',
+    className,
+    children,
+    href,
+    external,
+    disabled = false,
+    onClick,
+    type = 'button',
+    'aria-label': ariaLabel,
+    id,
+  },
+  ref,
+) {
   const { shouldAnimate } = useMotionSafe()
   const classes = cn(baseStyles, variantStyles[variant], sizeStyles[size], className)
 
@@ -84,6 +87,7 @@ export default function Button({
 
     return (
       <m.a
+        ref={ref as Ref<HTMLAnchorElement>}
         id={id}
         href={href}
         className={classes}
@@ -102,6 +106,7 @@ export default function Button({
 
   return (
     <m.button
+      ref={ref as Ref<HTMLButtonElement>}
       id={id}
       type={type}
       className={classes}
@@ -113,4 +118,6 @@ export default function Button({
       {children}
     </m.button>
   )
-}
+})
+
+export default Button

@@ -45,7 +45,7 @@ export interface StatItem {
 /** Call-to-action button configuration */
 export interface CTAConfig {
   label: string
-  href: string
+  href?: string
   variant?: 'primary' | 'secondary' | 'ghost'
 }
 
