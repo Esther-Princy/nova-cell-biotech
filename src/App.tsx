@@ -1,10 +1,26 @@
+import { MotionProvider } from './animations'
+import { Footer, Navbar, SkipLink } from './components/layout'
+import { Capabilities, FinalCTA, Hero, Impact, Innovation, Research } from './components/sections'
+
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-5xl font-bold">
-        Capitova Biotech
-      </h1>
-    </div>
+    <MotionProvider>
+      <div className="min-h-screen bg-ambient font-body text-text-primary antialiased">
+        <SkipLink />
+        <Navbar />
+
+        <main id="main-content" tabIndex={-1}>
+          <Hero />
+          <Innovation />
+          <Research />
+          <Capabilities />
+          <Impact />
+          <FinalCTA />
+        </main>
+
+        <Footer />
+      </div>
+    </MotionProvider>
   )
 }
 

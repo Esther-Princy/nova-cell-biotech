@@ -1,0 +1,6 @@
+export { default as Hero } from './Hero'
+export { default as Innovation } from './Innovation'
+export { default as Research } from './Research'
+export { default as Capabilities } from './Capabilities'
+export { default as FinalCTA } from './FinalCTA'
+export { default as Impact } from './Impact'
